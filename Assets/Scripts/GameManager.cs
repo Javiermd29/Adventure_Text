@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
 
     public const string NEW_LINE = "\n";
 
-    private List<string> logList;
+    private List<string> logList = new List<string>();
 
     [SerializeField] private TextMeshProUGUI displayText;
+
+    [SerializeField] private InputActionSO[] inputActionsArray;
 
     private void Awake()
     {
@@ -32,23 +34,41 @@ public class GameManager : MonoBehaviour
         DisplayFullRoomText();
     }
 
-    private void DisplayFullRoomText()
+    public InputActionSO[] GetInputActions()
     {
 
-        string fullText = RoomManager.Instance.currentRoom.description + NEW_LINE;
+
+
+    }
+
+    public void DisplayFullRoomText()
+    {
+        ClearAllColectionsForNewRoom();
+
+        string roomDescription = RoomManager.Instance.currentRoom.description + NEW_LINE;
+        string roomExitDescription = string.Join(NEW_LINE, RoomManager.Instance.GetExitDescriptionsListInRoom());
+        string fullText = roomDescription + roomExitDescription;
+
         UpdateLogList(fullText);
 
     }
 
     public void UpdateLogList(string stringToAdd)
     {
-        //logList.Add(stringToAdd);
-        DisplayLogText();
+        logList.Add(stringToAdd);
+        DisplayLoggedText();
     }
 
-    private void DisplayLogText(){
+    private void DisplayLoggedText(){
 
-        displayText.text = string.Join(NEW_LINE, logList.ToArray());
+        displayText.text = string.Join(NEW_LINE, logList);
+
+    }
+
+    private void ClearAllColectionsForNewRoom()
+    {
+
+        RoomManager.Instance.ClearExits();
 
     }
 

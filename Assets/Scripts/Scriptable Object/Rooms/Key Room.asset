@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81189874d45e463499007405554bbc97, type: 3}
-  m_Name: Start Room
+  m_Name: Key Room
   m_EditorClassIdentifier: 
-  name: start room
-  description: As you enter the ancient dungeon, the entrance seals behind you. There
-    is no turning back. Explore its depths, face dangers and discover its secrets
-    in search of a way out in this subway world of no return.
+  name: Key room
+  description: You're sorrounded by total blackness
   exits:
-  - direction: 
+  - direction: south
     description: 
-    room: {fileID: 0}
+    room: {fileID: 11400000, guid: bdd0494e4a4821745972587a29c04981, type: 2}
